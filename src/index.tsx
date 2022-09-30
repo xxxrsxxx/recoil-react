@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { RecoilRoot } from "recoil";
 
 import reportWebVitals from "./reportWebVitals";
 import Router from "./router";
@@ -27,11 +28,13 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <>
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={dev} />
-      <GlobalStyle />
-      <Router />
-    </QueryClientProvider>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={dev} />
+        <GlobalStyle />
+        <Router />
+      </QueryClientProvider>
+    </RecoilRoot>
   </>
 );
 

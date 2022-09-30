@@ -4,8 +4,8 @@ import { token } from "../atoms/user";
 export const userToken = selector({
   key: "userToken",
   get: ({ get }) => {
-    const items = get(token);
-    const format = `selector ${items}`;
+    const _token = get(token);
+    const format = `selector ${_token}`;
     return format;
   },
 });

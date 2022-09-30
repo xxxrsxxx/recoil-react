@@ -1,21 +1,30 @@
 import React from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { RecoilRoot } from "recoil";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { atoms } from "@src/store";
+import { Main, Login } from "@src/pages";
 import styled from "styled-components";
-import NotFound from "@src/pages/NotFound";
-import { Login } from "@src/pages";
+
 function Router() {
+  const userToken = useRecoilValue(atoms.user.token);
   return (
-    <RecoilRoot>
-      <BrowserRouter>
-        <Template>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Template>
-      </BrowserRouter>
-    </RecoilRoot>
+    <BrowserRouter>
+      <Template>
+        <Routes>
+          {userToken ? (
+            <>
+              <Route path="/" element={<Main />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </>
+          ) : (
+            <>
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<Navigate to="/login" replace />} />
+            </>
+          )}
+        </Routes>
+      </Template>
+    </BrowserRouter>
   );
 }
 

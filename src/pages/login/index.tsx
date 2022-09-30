@@ -5,14 +5,17 @@ const Login = () => {
   const [token, setToken] = useRecoilState(atoms.user.token);
   const userToken = useRecoilValue(selector.user.userToken);
   useEffect(() => {
-    setToken("setToken");
-  }, []);
+    setTimeout(() => {
+      setToken("token");
+    }, 2000);
+  }, [setToken]);
 
   return (
     <div>
-      <h1>start</h1>
-      <p>{token}</p>
-      <p>{userToken}</p>
+      <h1>login</h1>
+      <p>
+        {token}/{userToken}
+      </p>
     </div>
   );
 };

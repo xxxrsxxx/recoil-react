@@ -1,4 +1,5 @@
 import { lazy } from "react";
-const Login = lazy(() => import("./Login"));
+const Main = lazy(() => import("./main"));
+const Login = lazy(() => import("./login"));
 const NotFound = lazy(() => import("./NotFound"));
-export { NotFound, Login };
+export { Main, NotFound, Login };
