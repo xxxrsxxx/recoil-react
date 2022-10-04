@@ -29,7 +29,7 @@ function Router() {
 }
 
 const Template = styled.div`
-  height: 100vh;
+  height: 100%;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
