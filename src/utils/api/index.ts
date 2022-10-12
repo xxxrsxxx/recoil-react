@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 function createInstance() {
   let headers = {};
@@ -14,7 +14,7 @@ const instance = createInstance();
  * @param config
  */
 
-async function $_get<T>(url: string, config?: object) {
+async function $_get<T>(url: string, config?: AxiosRequestConfig) {
   const { data }: AxiosResponse<T> = await instance.get(url, config);
   return data;
 }
