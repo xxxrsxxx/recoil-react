@@ -19,4 +19,23 @@ async function $_get<T>(url: string, config?: AxiosRequestConfig) {
   return data;
 }
 
+const changeOriginalHeader = (originalRequestConfig: any, options: {}) => {
+  Object.entries(options).forEach(([key, value], index) => {
+    originalRequestConfig.headers[key] = value;
+  });
+  return originalRequestConfig;
+};
+
+instance.interceptors.response.use(
+  async (response: AxiosResponse) => {
+    const originalRequestConfig: AxiosRequestConfig = response.config;
+    const config = changeOriginalHeader(originalRequestConfig, {});
+    await axios(config);
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export { $_get };
